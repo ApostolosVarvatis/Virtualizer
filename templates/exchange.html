@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Exchange Crypto
+{% endblock %}
+
+{% block main %}
+
+        <form action="/exchange" method="post">
+            <div class="mb-4">
+                <h2 class="fw-bold">Crypto</h2>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Crypto Symbol" type="text">
+            </div>
+            <div class="mb-3 fw-bold">
+                FROM / TO
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="currency" name="currency" placeholder="Currency" type="text">
+            </div>
+            <div class="mb-1">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Shares (negative = sell)" type="text">
+            </div>
+            <div class="mb-3">
+                <span style="color:darkgray" class="fs-6 fst-italic">No fractional shares!</span>
+            </div>
+            <button class="btn btn-dark" type="submit">Exchange Now</button>
+
+            
+        </form>
+
+
+{% endblock %}

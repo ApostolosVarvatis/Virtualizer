@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    HomeNonRate
+{% endblock %}
+
+{% block main %}
+    
+    <div class="mb-4">
+        <h2 class="fw-bold fs-2 badge bg-dark text-wrap">Virtual Wallet</h2>
+    </div>
+    
+    <!-- --------------------- TABLE 1 --------------------- -->
+    <main class="container pb-5 text-center">
+
+        <table class="table table-hover table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="text-start">Currency Symbol</th>
+                    <th class="text-start">Amount</th>                    
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for cur in currency_data %}
+                <tr>
+                    <td class="text-start">{{cur["currency"]}}</td>
+                    <td class="text-start">{{cur["amount"] | digits}}</td>                    
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            
+
+        </table>
+
+    </main>
+
+
+
+
+    <!-- --------------------- TABLE 2 --------------------- -->
+
+    <main class="container pb-5 text-center">
+
+        <table class="table table-hover table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="text-start">Crypto Symbol</th>
+                    <th class="text-start">Shares</th>
+
+                    
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for cur in crypto_data %}
+                <tr>
+                    <td class="text-start">{{cur["symbol"]}}</td>
+                    <td class="text-start">{{cur["amount"] | int}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+            
+        </table>
+
+    </main>
+
+
+
+
+    <p>
+        <form action="/addcash" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="amount" min="0" name="amount" placeholder="Amount" type="number">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="currency" name="currency" placeholder="Currency" type="text">
+            </div>
+            <button class="btn btn-dark btn-sm" type="submit">Add To Wallet</button>
+        </form>
+    </p>
+
+{% endblock %}

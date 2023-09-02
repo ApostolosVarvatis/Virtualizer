@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    
+    <div class="mb-4">
+        <h2 class="fw-bold fs-2 badge bg-dark text-wrap">Virtual Wallet</h2>
+    </div>
+    
+    <!-- --------------------- TABLE 1 --------------------- -->
+    <main class="container pb-5 text-center">
+
+        <table class="table table-hover table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="text-start">Currency / Symbol</th>
+                    <th class="text-start">Amount</th>
+                    <th class="text-start"><span style="color:green">To</span></th>
+                    <th class="text-end"><span style="color:green">Rate Now</span></th>
+                    <th class="text-end"><span style="color:green">TOTAL NOW</span></th>
+                    <th class="text-end"><span style="color:green">Last Refreshed</span></th>
+                    
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for cur in data_dict %}
+                <tr>
+                    <td class="text-start">{{cur["from_name"]}} / {{cur["from_symbol"]}}</td>
+                    <td class="text-start">{{dataCur[cur["from_symbol"]] | digits}}</td>
+                    <td class="text-start"><span style="color:green">{{cur["to_name"]}} / {{cur["to_symbol"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{cur["exchange_rate"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{(dataCur[cur["from_symbol"]] * cur["exchange_rate"]) | digits}} {{cur["to_symbol"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{cur["last_refreshed"]}} / {{cur["time_zone"]}}</span></td>
+                    
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            
+
+        </table>
+
+    </main>
+
+
+
+
+    <!-- --------------------- TABLE 2 --------------------- -->
+
+    <main class="container pb-5 text-center">
+
+        <table class="table table-hover table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="text-start">Crypto / Symbol</th>
+                    <th class="text-start">Shares</th>
+                    <th class="text-start"><span style="color:green">To</span></th>
+                    <th class="text-end"><span style="color:green">Rate Now</span></th>
+                    <th class="text-end"><span style="color:green">TOTAL NOW</span></th>
+                    <th class="text-end"><span style="color:green">Last Refreshed</span></th>
+                    
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for cur in data_dict2 %}
+                <tr>
+                    <td class="text-start">{{cur["from_name"]}} / {{cur["from_symbol"]}}</td>
+                    <td class="text-start">{{dataCry[cur["from_symbol"]] | int}}</td>
+                    <td class="text-start"><span style="color:green">{{cur["to_name"]}} / {{cur["to_symbol"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{cur["exchange_rate"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{(dataCry[cur["from_symbol"]] * cur["exchange_rate"]) | digits}} {{cur["to_symbol"]}}</span></td>
+                    <td class="text-end"><span style="color:green">{{cur["last_refreshed"]}} / {{cur["time_zone"]}}</span></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+            
+        </table>
+
+    </main>
+
+
+
+
+    <p>
+        <form action="/addcash" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="amount" min="0" name="amount" placeholder="Amount" type="number">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="currency" name="currency" placeholder="Currency" type="text">
+            </div>
+            <button class="btn btn-dark btn-sm" type="submit">Add To Wallet</button>
+        </form>
+    </p>
+
+{% endblock %}

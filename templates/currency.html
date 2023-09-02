@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Currency
+{% endblock %}
+
+{% block main %}
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Currency</h2>
+    </div>
+
+    <p>
+        <form action="/currency" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="from_symbol" name="from_symbol" placeholder="From Symbol" type="text">
+            </div>
+            <div class="mb-3 fw-bold">
+                TO
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="to_symbol" name="to_symbol" placeholder="To Symbol" type="text">
+            </div>
+            <button class="btn btn-dark" type="submit">Search</button>
+        </form>        
+    </p>
+
+
+{% endblock %}

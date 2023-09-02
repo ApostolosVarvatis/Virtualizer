@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Exchange Currency
+{% endblock %}
+
+{% block main %}
+
+        <form action="/exchangec" method="post">
+            <div class="mb-4">
+                <h2 class="fw-bold">Currency</h2>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="from_currency" name="from_currency" placeholder="Currency" type="text">
+            </div>
+            <div class="mb-3 fw-bold">
+                TO
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="to_currency" name="to_currency" placeholder="Currency" type="text">
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="value" name="value" placeholder="Amount" type="text">
+            </div>
+            <button class="btn btn-dark" type="submit">Exchange Now</button>
+        </form>
+
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    HistoryNonRate
+{% endblock %}
+
+{% block main %}
+
+    <div class="mb-4">
+        <h2 class="fw-bold fs-2 badge bg-dark text-wrap">Transactions History</h2>
+    </div>
+
+    <!-- --------------------- TABLE 1 --------------------- -->
+    <main class="container pb-5 text-center">
+
+        <table class="table table-hover table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th class="text-start">FROM</th>
+                    <th class="text-start">Amount</th>
+                    <th class="text-end">TO</th>
+                    <th class="text-end">Rate Bought or Sold</th>
+                    <th class="text-end">Transacted at</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+                {% for cur in currency_data %}
+                    {% if cur["from_cur"] == 'From Me' %}
+                    <tr class="table-success">
+                    {% else %}
+                    <tr>
+                    {% endif %}
+
+                        <td class="text-start">{{cur["from_cur"]}}</td>
+                        <td class="text-start">{{cur["quantity"]}}</td>
+                        <td class="text-end">{{cur["to_cur"]}}</td>
+                        <td class="text-end">{{cur["rate"]}}
+                            {% if cur["from_cur"] == 'From Me' %}
+
+                            {% else %}
+                            
+                            {% endif %}
+                            <td class="text-end">{{cur["year"]}}-{% if cur["month"] <= 9 %}0{{cur["month"]}}{% else %}{{cur["month"]}}{% endif %}-{% if cur["day"] <= 9 %}0{{cur["day"]}}{% else %}{{cur["day"]}}{% endif %} {% if cur["hour"] <= 9 %}0{{cur["hour"]}}{% else %}{{cur["hour"]}}{% endif %}:{% if cur["minute"] <= 9 %}0{{cur["minute"]}}{% else %}{{cur["minute"]}}{% endif %}:{% if cur["second"] <= 9 %}0{{cur["second"]}}{% else %}{{cur["second"]}}{% endif %}</td>
+
+                    </tr>
+                    
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </main>
+
+        <!-- --------------------- TABLE 2 --------------------- -->
+        <main class="container pb-5 text-center">
+
+            <table class="table table-hover table-striped table-bordered">
+    
+                <thead>
+                    <tr>
+                        <th class="text-start">FROM</th>
+                        <th class="text-start">Amount</th>
+                        <th class="text-end">TO</th>
+                        <th class="text-end">Rate Bought or Sold</th>
+                        <th class="text-end">Transacted at</th>
+                    </tr>
+                </thead>
+    
+    
+                <tbody>
+    
+                    {% for cur in crypto_data %}
+
+                        <tr>
+                            <td class="text-start">{{cur["symbol"]}}</td>
+                            <td class="text-start">{{cur["quantity"]}}</td>
+                            <td class="text-end">{{cur["currency"]}}</td>
+                            {% if cur["quantity"] < 0 %}
+                            <td class="text-end">{{(cur["price"] / cur["quantity"]) * (-1)}}</td>
+                            {% else %}
+                            <td class="text-end">{{(cur["price"] / cur["quantity"])}}</td>
+                            {% endif %}
+                            <td class="text-end">{{cur["year"]}}-{% if cur["month"] <= 9 %}0{{cur["month"]}}{% else %}{{cur["month"]}}{% endif %}-{% if cur["day"] <= 9 %}0{{cur["day"]}}{% else %}{{cur["day"]}}{% endif %} {% if cur["hour"] <= 9 %}0{{cur["hour"]}}{% else %}{{cur["hour"]}}{% endif %}:{% if cur["minute"] <= 9 %}0{{cur["minute"]}}{% else %}{{cur["minute"]}}{% endif %}:{% if cur["second"] <= 9 %}0{{cur["second"]}}{% else %}{{cur["second"]}}{% endif %}</td>
+                        </tr>
+                        
+                    {% endfor %}
+    
+                </tbody>
+    
+            </table>
+    
+        </main>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+
+    <main>
+        <div class="mb-4">
+            <h2 class="fw-bold fs-2 badge bg-warning text-wrap">We are sorry but error <u>code {{ top }}</u></h2>
+        </div>
+        <div class="mb-4">
+            <h2 class="fw-bold fs-1 badge bg-danger text-wrap">{{ bottom }}</h2>
+        </div>
+    </main>
+
+{% endblock %}

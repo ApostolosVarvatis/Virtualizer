@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Crypto
+{% endblock %}
+
+{% block main %}
+
+    <div class="mb-4">
+        <h2 class="fw-bold">Crypto</h2>
+    </div>
+
+    <p>
+        <form action="/crypto" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Crypto Symbol" type="text">
+            </div>
+            <div class="mb-3 fw-bold">
+                IN
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="currency" name="currency" placeholder="Currency Symbol" type="text">
+            </div>
+            <div class="mb-3">
+                <span style="color:darkgray;" class="fs-6 fst-italic">No fractional shares!</span>
+            </div>
+            <button class="btn btn-dark" type="submit">Search</button>
+        </form>        
+    </p>
+
+
+{% endblock %}
